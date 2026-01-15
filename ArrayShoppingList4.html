@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilih Produk Nike</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background: url('https://cdn.shopify.com/s/files/1/1626/5391/files/Central_Cee_Nike_Tech_Fleece.jpg?v=1708687481') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 20px;
+      color: white;
+      min-height: 100vh;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      padding: 16px;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .category {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin: 6px 0;
+    }
+
+    .price {
+      margin-top: 8px;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      margin-right: 8px;
+      color: #ffcaca;
+    }
+
+    .diskon {
+      background: green;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-left: 5px;
+    }
+
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .checkbox {
+      width: 20px;
+      height: 20px;
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: none;
+      color: red;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .summary {
+      margin-top: 30px;
+      background: rgba(255,255,255,0.12);
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .done-btn {
+      margin-top: 16px;
+      background: white;
+      color: black;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Pilih Produk Nike</h2>
+<div class="grid" id="product-grid"></div>
+
+<div class="summary">
+  <p>Total Belanja: <span id="totalBelanja">Rp0</span></p>
+  <p>Total Diskon: <span id="totalDiskon">Rp0</span></p>
+  <p><strong>Total Akhir: <span id="totalAkhir">Rp0</span></strong></p>
+  <p id="totalBudget">Total Dipilih: Rp0</p>
+  <button class="done-btn">Selesai Belanja</button>
+</div>
+
+<script>
+const products = [
+  { name: "Tech Fleece Grey", category: "Jacket", price: 2199000 },
+  { name: "Tech Fleece Black", category: "Jacket", price: 2199000 },
+  { name: "Tech Fleece Blue", category: "Jacket", price: 2199000, diskon: true, originalPrice: 2599000 },
+  { name: "Cargo Joggers", category: "Pants", price: 1499000 },
+  { name: "Club Fleece Pants", category: "Pants", price: 849000, diskon: true, originalPrice: 999000 },
+  { name: "Essential Tee", category: "Shirt", price: 459000 },
+  { name: "Nike Dri-FIT Tee", category: "Shirt", price: 379000 },
+  { name: "Oversized Tee", category: "Shirt", price: 499000 },
+  { name: "Air Max 270", category: "Shoes", price: 2399000, diskon: true, originalPrice: 2999000 },
+  { name: "Air Force 1 '07", category: "Shoes", price: 1799000 },
+  { name: "Air Max 90", category: "Shoes", price: 1999000 },
+  { name: "Blazer Mid '77", category: "Shoes", price: 1499000 },
+  { name: "Waffle Debut", category: "Shoes", price: 999000 },
+  { name: "Nike Court Vision", category: "Shoes", price: 1049000 },
+  { name: "Nike Revolution 6", category: "Shoes", price: 849000 },
+  { name: "Nike Air Zoom Pegasus 40", category: "Shoes", price: 1899000 },
+  { name: "Nike Metcon 9", category: "Shoes", price: 2149000 },
+  { name: "Nike Zoom Fly 5", category: "Shoes", price: 2499000 },
+  { name: "Nike React Infinity", category: "Shoes", price: 2199000 },
+  { name: "Nike Zoom Structure 24", category: "Shoes", price: 1899000, diskon: true, originalPrice: 2399000 }
+];
+
+const grid = document.getElementById("product-grid");
+const totalBelanja = document.getElementById("totalBelanja");
+const totalDiskon = document.getElementById("totalDiskon");
+const totalAkhir = document.getElementById("totalAkhir");
+const totalBudget = document.getElementById("totalBudget");
+
+function formatRupiah(angka) {
+  return 'Rp' + angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function renderGrid() {
+  grid.innerHTML = "";
+  let total = 0;
+  let diskonTotal = 0;
+
+  products.forEach((item, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const kategori = document.createElement("div");
+    kategori.className = "category";
+    kategori.textContent = item.category;
+
+    const nama = document.createElement("div");
+    nama.className = "name";
+    nama.textContent = item.name;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    if (item.diskon) {
+      price.innerHTML = `<span class='original-price'>${formatRupiah(item.originalPrice)}</span><span>${formatRupiah(item.price)}</span><span class='diskon'>Diskon</span>`;
+      diskonTotal += item.originalPrice - item.price;
+      total += item.price;
+    } else {
+      price.textContent = formatRupiah(item.price);
+      total += item.price;
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "checkbox";
+    checkbox.dataset.price = item.diskon ? item.price : item.price;
+    checkbox.addEventListener("change", updateBudget);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.textContent = "✕";
+    deleteBtn.onclick = () => {
+      products.splice(index, 1);
+      renderGrid();
+    };
+
+    actions.appendChild(checkbox);
+    actions.appendChild(deleteBtn);
+
+    card.appendChild(kategori);
+    card.appendChild(nama);
+    card.appendChild(price);
+    card.appendChild(actions);
+
+    grid.appendChild(card);
+  });
+
+  totalBelanja.textContent = formatRupiah(total + diskonTotal);
+  totalDiskon.textContent = formatRupiah(diskonTotal);
+  totalAkhir.textContent = formatRupiah(total);
+}
+
+function updateBudget() {
+  let total = 0;
+  document.querySelectorAll(".checkbox:checked").forEach(cb => {
+    total += parseInt(cb.dataset.price);
+  });
+  totalBudget.textContent = `Total Dipilih: ${formatRupiah(total)}`;
+}
+
+renderGrid();
+
+document.querySelector(".done-btn").addEventListener("click", () => {
+  const checked = document.querySelectorAll(".checkbox:checked");
+  if (checked.length === 0) {
+    alert("Pilih minimal 1 item");
+    return;
+  }
+  const total = Array.from(checked).reduce((acc, cb) => acc + parseInt(cb.dataset.price), 0);
+  alert("Belanja selesai!\nTotal: " + formatRupiah(total));
+
+  checked.forEach(cb => {
+    const card = cb.closest(".card");
+    const name = card.querySelector(".name").textContent;
+    const index = products.findIndex(p => p.name === name);
+    if (index !== -1) products.splice(index, 1);
+  });
+
+  renderGrid();
+});
+</script>
+
+
+<script>
+// 1. What is Modern ES6?
+const greet = (name) => `Hello, ${name}`;
+console.log(greet('Educourse'));
+
+// 2. New Features for Arrays
+const fruits = ['Apple', 'Banana'];
+const moreFruits = [...fruits, 'Mango'];
+console.log(moreFruits);
+
+const numbers = [10, 20, 30, 40];
+const result = numbers.find(num => num > 25);
+console.log(result); // Output: 30
+
+// 3. New Features for Strings
+const name = 'Malvin';
+const message = `Welcome, ${name}!`;
+console.log(message);
+console.log(message.includes('Malvin')); // true
+
+// 4. Classes for Object
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+  }
+}
+
+const user = new Person('Reiha', 17);
+console.log(user.introduce());
+
+// 5. New Data Structure
+const uniqueNumbers = new Set([1, 2, 3, 3, 2]);
+console.log(uniqueNumbers);
+
+const userMap = new Map();
+userMap.set('name', 'Malvin');
+userMap.set('role', 'Student');
+console.log(userMap.get('name'));
+
+// 6. New Features for Maths & Numbers
+console.log(Math.trunc(4.9)); // 4
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(5.5)); // false
+</script>
+
+</body>
+</html>

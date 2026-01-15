@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nike x Vin</title>
+
+  <!-- Font Montserrat -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('https://s3.amazonaws.com/snipesusa-blog/production/wp-content/uploads/2023/08/14210517/Nike-Tech-Fleece-2400x1157-New-Feature.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      max-width: 700px;
+      color: #f0f0f0;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+      margin-bottom: 35px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background-color: white;
+      color: black;
+      padding: 12px 30px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: #f1f1f1;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Run Your Flow</h1>
+  <p>Urus kebutuhan lo tanpa drama. Simpel, cepat, dan tetap on-point. Kayak gaya lo tiap hari.</p>
+  <div class="btn-group">
+    <a href="ArrayShoppingList2.html" class="btn">Kunjungi</a>
+    <a href="ArrayShoppingList3.html" class="btn">Tentang</a>
+  </div>
+
+
+<script>
+// 1. What is Modern ES6?
+const greet = (name) => `Hello, ${name}`;
+console.log(greet('Educourse'));
+
+// 2. New Features for Arrays
+const fruits = ['Apple', 'Banana'];
+const moreFruits = [...fruits, 'Mango'];
+console.log(moreFruits);
+
+const numbers = [10, 20, 30, 40];
+const result = numbers.find(num => num > 25);
+console.log(result); // Output: 30
+
+// 3. New Features for Strings
+const name = 'Malvin';
+const message = `Welcome, ${name}!`;
+console.log(message);
+console.log(message.includes('Malvin')); // true
+
+// 4. Classes for Object
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+  }
+}
+
+const user = new Person('Reiha', 17);
+console.log(user.introduce());
+
+// 5. New Data Structure
+const uniqueNumbers = new Set([1, 2, 3, 3, 2]);
+console.log(uniqueNumbers);
+
+const userMap = new Map();
+userMap.set('name', 'Malvin');
+userMap.set('role', 'Student');
+console.log(userMap.get('name'));
+
+// 6. New Features for Maths & Numbers
+console.log(Math.trunc(4.9)); // 4
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(5.5)); // false
+</script>
+
+</body>
+</html>

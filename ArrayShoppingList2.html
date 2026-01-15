@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: url('https://wallpapercave.com/wp/wp11843541.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 30px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 370px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      color: white;
+    }
+
+    .login-card h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      color: #f0f0f0;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: background 0.3s ease;
+    }
+
+    .form-group input::placeholder {
+      color: #e0e0e0;
+    }
+
+    .form-group input:focus {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      color: #000;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #f0f0f0;
+    }
+
+    #status {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 480px) {
+      .login-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>Login</h2>
+    <form onsubmit="return login()">
+      <div class="form-group">
+        <label for="username">Email / Username</label>
+        <input type="text" id="username" placeholder="Masukkan email atau username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Masukkan password" required>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <div id="status"></div>
+    <div class="bottom-text">
+      Belum punya akun? <a href="#" style="color: #fff; text-decoration: underline;">Sign Up</a>
+    </div>
+  </div>
+
+  <script>
+    const users = [
+      { username: "admin", password: "123456" },
+      { username: "malvin", password: "reiha123" },
+      { username: "cuman nyoba", password: "123123" }
+    ];
+
+    function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const statusDiv = document.getElementById("status");
+
+      if (!username || !password) {
+        statusDiv.textContent = "Semua field wajib diisi!";
+        statusDiv.style.color = "lightred";
+        return false;
+      }
+
+      if (password.length < 6) {
+        statusDiv.textContent = "Password minimal 6 karakter!";
+        statusDiv.style.color = "lightred";
+        return false;
+      }
+
+      statusDiv.textContent = "Sedang memproses login...";
+      statusDiv.style.color = "lightblue";
+
+      setTimeout(() => {
+        const userFound = users.find(user =>
+          user.username === username && user.password === password
+        );
+
+        if (userFound) {
+          statusDiv.textContent = `Selamat datang, ${username}!`;
+          statusDiv.style.color = "lightwhite";
+          // Redirect setelah delay kecil
+          setTimeout(() => {
+            window.location.href = "ArrayShoppingList4.html";
+          }, 1000);
+        } else {
+          statusDiv.textContent = "Username atau password salah!";
+          statusDiv.style.color = "lightred";
+        }
+      }, 1500);
+
+      return false;
+    }
+  </script>
+
+
+<script>
+const greet = (name) => `Hello, ${name}`;
+console.log(greet('Educourse'));
+
+// 1. New Features for Arrays
+const fruits = ['Apple', 'Banana'];
+const moreFruits = [...fruits, 'Mango'];
+console.log(moreFruits);
+
+const numbers = [10, 20, 30, 40];
+const result = numbers.find(num => num > 25);
+console.log(result); // Output: 30
+
+// 2. New Features for Strings
+const name = 'Malvin';
+const message = `Welcome, ${name}!`;
+console.log(message);
+console.log(message.includes('Malvin')); // true
+
+// 3. Classes for Object
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+  }
+}
+
+const user = new Person('Reiha', 17);
+console.log(user.introduce());
+
+// 4. New Data Structure
+const uniqueNumbers = new Set([1, 2, 3, 3, 2]);
+console.log(uniqueNumbers);
+
+const userMap = new Map();
+userMap.set('name', 'Malvin');
+userMap.set('role', 'Student');
+console.log(userMap.get('name'));
+
+// 5. New Features for Maths & Numbers
+console.log(Math.trunc(4.9)); // 4
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(5.5)); // false
+</script>
+
+</body>
+</html>

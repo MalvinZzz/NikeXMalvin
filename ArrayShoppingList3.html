@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tentang Nike x Vin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url('https://cdn.runrepeat.com/storage/gallery/product_content/25232/nike-air-max-plus-outdoor-01-22587784-main.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    .contact {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-radius: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 10px 20px;
+      background-color: #e0e0e0;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #d0d0d0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tentang Nike x Vin</h1>
+    <p>
+      Nike adalah salah satu merek olahraga terbesar dan paling berpengaruh di dunia. Didirikan pada tahun 1964 sebagai Blue Ribbon Sports, perusahaan ini berganti nama menjadi Nike, Inc. pada tahun 1971, mengambil inspirasi dari nama dewi kemenangan dalam mitologi Yunani.
+    </p>
+    <p>
+      Nike dikenal atas inovasi dan desain sepatu atletik yang revolusioner. Salah satu lini yang paling terkenal adalah Nike Air, yang menggunakan teknologi bantalan udara untuk kenyamanan dan performa tinggi. Seiring waktu, Nike mengembangkan berbagai model seperti Air Max, Air Force 1, dan Nike React.
+    </p>
+    <p>
+      Selain teknologi, Nike juga unggul dalam strategi pemasaran dan kolaborasi. Dukungan dari atlet ternama seperti Michael Jordan, Serena Williams, dan Cristiano Ronaldo telah memperkuat posisinya sebagai pemimpin industri. Koleksi Air Jordan bahkan telah menjadi ikon budaya yang melampaui dunia olahraga.
+    </p>
+    <p>
+      Dalam beberapa dekade terakhir, Nike tidak hanya berfokus pada performa, tetapi juga pada fashion streetwear. Kolaborasi dengan desainer seperti Virgil Abloh (Off-White) hingga brand-brand seperti Supreme dan Travis Scott menjadikan Nike relevan di dunia fashion dan lifestyle modern.
+    </p>
+    <p>
+      Dengan komitmen terhadap keberlanjutan, Nike juga mulai menggunakan bahan daur ulang dan proses produksi ramah lingkungan dalam berbagai produknya. Inisiatif "Move to Zero" menjadi bagian dari upaya mereka menuju masa depan yang lebih hijau.
+    </p>
+    <p>
+      Nike x Vin adalah interpretasi lokal dari semangat global Nike — menggabungkan elemen khas Nike dengan nuansa desain dan semangat kreatif anak muda Indonesia. Kolaborasi ini membuka ruang baru untuk ekspresi gaya dan inovasi dalam dunia fashion olahraga.
+    </p>
+
+    <a href="ArrayShoppingList1.html" class="back-button">← Kembali</a>
+
+    <div class="contact">
+      <h3>Kontak Perusahaan</h3>
+      <p>Email: info@nikexvin.id</p>
+      <p>Telepon: +62 812-3456-7890</p>
+      <p>Alamat: Jl. Ni Aja Dulu No 24, Kota Atlantis</p>
+    </div>
+
+    <div class="footer">
+      &copy; 2025 Nike x Vin. Seluruh hak cipta dilindungi.
+    </div>
+  </div>
+
+<script>
+// 1. What is Modern ES6?
+const greet = (name) => `Hello, ${name}`;
+console.log(greet('Educourse'));
+
+// 2. New Features for Arrays
+const fruits = ['Apple', 'Banana'];
+const moreFruits = [...fruits, 'Mango'];
+console.log(moreFruits);
+
+const numbers = [10, 20, 30, 40];
+const result = numbers.find(num => num > 25);
+console.log(result); // Output: 30
+
+// 3. New Features for Strings
+const name = 'Malvin';
+const message = `Welcome, ${name}!`;
+console.log(message);
+console.log(message.includes('Malvin')); // true
+
+// 4. Classes for Object
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  introduce() {
+    return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+  }
+}
+
+const user = new Person('Reiha', 17);
+console.log(user.introduce());
+
+// 5. New Data Structure
+const uniqueNumbers = new Set([1, 2, 3, 3, 2]);
+console.log(uniqueNumbers);
+
+const userMap = new Map();
+userMap.set('name', 'Malvin');
+userMap.set('role', 'Student');
+console.log(userMap.get('name'));
+
+// 6. New Features for Maths & Numbers
+console.log(Math.trunc(4.9)); // 4
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(5.5)); // false
+</script>
+
+</body>
+</html>
